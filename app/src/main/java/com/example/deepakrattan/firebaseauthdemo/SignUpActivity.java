@@ -1,6 +1,7 @@
 package com.example.deepakrattan.firebaseauthdemo;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText edtEmail, edtPasswd;
@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signup);
 
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPasswd = (EditText) findViewById(R.id.edtPassword);
@@ -73,6 +73,8 @@ public class SignUpActivity extends AppCompatActivity {
                 //if success
                 if (task.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, "Registration successfull", Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
 
                 } else {
                     Exception e = task.getException();
